@@ -1,75 +1,101 @@
-# TikTok LIVE Studio for Ajazz Stream Dock
+# Ajazz Compatibility Enhancements for TikTok LIVE Studio Plugin
 
 [English](#english) | [Português](#português)
 
+A community-maintained compatibility enhancement for a TikTok LIVE Studio plugin distributed through the Ajazz Stream Dock plugin store.
+
+This repository documents and maintains compatibility improvements and quality-of-life enhancements for Ajazz Stream Dock devices while preserving the original plugin behavior whenever practical.
+
+> **Disclaimer**
+>
+> - This is an **unofficial** community project.
+> - It is **not affiliated with, endorsed by, sponsored by, or supported by** TikTok, ByteDance, Elgato, or Ajazz.
+> - References to third-party products are solely for compatibility and identification purposes.
+> - All trademarks, product names, logos, and other intellectual property remain the property of their respective owners.
+> - Based on the available files, the original plugin metadata identifies the software as a TikTok LIVE Studio Stream Deck plugin. The original author and licensing terms of the distributed package could not be independently verified by this repository.
+
 ---
 
-<div id="english"></div>
+<a id="english"></a>
 
-# TikTok LIVE Studio for Ajazz Stream Dock (English)
+# English
 
-This repository contains an adapted version of the official TikTok LIVE Studio plugin for Elgato Stream Deck, modified to work seamlessly with Ajazz Stream Dock controllers (AKP150, AKP153, etc.).
+## Overview
 
-## Key Features
+This project provides compatibility enhancements for a TikTok LIVE Studio plugin obtained from the Ajazz Stream Dock plugin store.
 
-* **Auto-Reconnect:** The plugin automatically reestablishes the WebSocket connection with TikTok LIVE Studio if the connection drops or if the Ajazz software is started first.
-* **Volume Step Control:** Configurable dial rotation sensitivity. You can adjust the volume step percentage per tick in the Property Inspector to make dial controls smoother.
-* **Bleep Action:** A custom action that plays a 1000Hz censor beep using the Web Audio API when the button is held down.
+The objective is to improve the user experience on Ajazz hardware while minimizing changes to the original plugin.
+
+## Features
+
+- Improved compatibility with Ajazz Stream Dock devices.
+- Automatic WebSocket reconnection.
+- Automatic recovery when TikTok LIVE Studio starts after the plugin.
+- Configurable rotary dial volume step.
+- Custom **Bleep** action (1000 Hz tone while the key is held).
+
+## Project Files
+
+| File | Description |
+|------|-------------|
+| `reconnect-fix.js` | Improves WebSocket reconnection behavior. |
+| `ajazz-enhancements.js` | Adds Ajazz-specific enhancements and the Bleep action. |
+| `ajazz-pi-enhancements.js` | Extends the Property Inspector interface. |
 
 ## Installation
 
-1. Clone or download this repository.
-2. Make sure the main folder is named `com.tiktok.livestudio.sdPlugin`.
-3. Copy the folder to your Ajazz plugins directory (typically `%APPDATA%\Ajazz\StreamDock\plugins\`).
-4. Restart the Ajazz software.
-
-## Included Modifications
-
-The core plugin logic remains intact. The compatibility layer and new features are injected through separate files:
-* [plugin.html](plugin.html) - Modified to load the enhancement scripts.
-* [reconnect-fix.js](reconnect-fix.js) - WebSocket auto-reconnect logic.
-* [ajazz-enhancements.js](ajazz-enhancements.js) - Bleep synthesis and dial event handling.
-* [ajazz-pi-enhancements.js](ajazz-pi-enhancements.js) - Property Inspector UI updates for volume steps.
+1. Download the latest release.
+2. Ensure the plugin folder is named `com.tiktok.livestudio.sdPlugin`.
+3. Copy it to `%APPDATA%\HotSpot\StreamDock\plugins\`.
+4. Restart the Ajazz Stream Dock software.
 
 ## Credits
 
-* **Base Plugin:** TikTok LIVE Studio team / ByteDance Ltd. / Elgato.
-* **Ajazz Adaptations:** [Your Name/GitHub].
-
-This is a community-driven, unofficial modification and is not affiliated with TikTok or Elgato.
+- Original plugin metadata identifies the base software as a TikTok LIVE Studio Stream Deck plugin.
+- This repository is based on a package obtained from the Ajazz Stream Dock plugin store.
+- Community enhancements and maintenance.
 
 ---
 
-<div id="português"></div>
+<a id="português"></a>
 
-# TikTok LIVE Studio para Ajazz Stream Dock (Português)
+# Português
 
-Este repositório contém uma versão adaptada do plugin oficial do TikTok LIVE Studio para Elgato Stream Deck, modificado para funcionar nativamente com os controladores Ajazz Stream Dock (AKP150, AKP153, etc.).
+## Visão geral
 
-## Principais Funcionalidades
+Este projeto reúne melhorias de compatibilidade para um plugin do TikTok LIVE Studio obtido na loja de plugins da Ajazz Stream Dock.
 
-* **Auto-Reconnect:** O plugin reestabelece automaticamente a conexão WebSocket com o TikTok LIVE Studio em caso de queda ou se o software da Ajazz for iniciado antes.
-* **Controle de Sensibilidade dos Dials:** Sensibilidade de rotação configurável. É possível ajustar a porcentagem de alteração de volume por "clique" do dial diretamente no Property Inspector.
-* **Ação de Bleep (Censura):** Uma nova ação que emite um bipe de censura de 1000Hz (usando Web Audio API) enquanto o botão for mantido pressionado.
+O objetivo é melhorar a experiência em dispositivos Ajazz, realizando o mínimo possível de alterações no comportamento do plugin original.
+
+## Funcionalidades
+
+- Melhor compatibilidade com dispositivos Ajazz Stream Dock.
+- Reconexão automática do WebSocket.
+- Recuperação automática quando o TikTok LIVE Studio é iniciado após o plugin.
+- Sensibilidade configurável para os dials.
+- Nova ação **Bleep** (tom de 1000 Hz enquanto o botão permanece pressionado).
+
+## Arquivos do projeto
+
+| Arquivo | Descrição |
+|---------|-----------|
+| `reconnect-fix.js` | Melhora a reconexão automática do WebSocket. |
+| `ajazz-enhancements.js` | Recursos adicionais específicos para Ajazz e ação Bleep. |
+| `ajazz-pi-enhancements.js` | Expande a interface do Property Inspector. |
 
 ## Instalação
 
-1. Baixe os arquivos deste repositório.
-2. Certifique-se de que a pasta principal se chama `com.tiktok.livestudio.sdPlugin`.
-3. Copie a pasta para o diretório de plugins do Ajazz (geralmente em `%APPDATA%\Ajazz\StreamDock\plugins\`).
-4. Reinicie o software da Ajazz.
-
-## Modificações Inclusas
-
-A lógica base do plugin foi mantida intacta. A camada de compatibilidade e as novas funções são injetadas através dos seguintes arquivos:
-* [plugin.html](plugin.html) - Modificado para carregar os scripts de melhoria.
-* [reconnect-fix.js](reconnect-fix.js) - Lógica de reconexão automática do WebSocket.
-* [ajazz-enhancements.js](ajazz-enhancements.js) - Síntese do áudio de bleep e tratamento dos eventos dos dials.
-* [ajazz-pi-enhancements.js](ajazz-pi-enhancements.js) - Atualizações na interface do Property Inspector.
+1. Baixe a versão mais recente.
+2. Verifique se a pasta do plugin possui o nome `com.tiktok.livestudio.sdPlugin`.
+3. Copie-a para `%APPDATA%\Ajazz\StreamDock\plugins\`.
+4. Reinicie o software Ajazz Stream Dock.
 
 ## Créditos
 
-* **Plugin Base:** Equipe do TikTok LIVE Studio / ByteDance Ltd. / Elgato.
-* **Adaptação para Ajazz:** [fefecal].
+- Os metadados do plugin identificam a base como um plugin do TikTok LIVE Studio para Stream Deck.
+- Este repositório foi criado a partir de um pacote obtido na loja de plugins da Ajazz Stream Dock.
+- Melhorias e manutenção da comunidade.
 
-Este é um projeto não-oficial mantido pela comunidade, sem nenhum vínculo com o TikTok ou Elgato.
+## Legal Notice
+
+Este repositório descreve e mantém modificações da comunidade. Nenhuma declaração deste README deve ser interpretada como reivindicação de autoria sobre o software original ou como indicação de afiliação oficial com seus respectivos titulares de direitos.
