@@ -38,10 +38,10 @@ Physical encoders/dials controlling microphone and system volume exhibited incon
 ## Modified File Structure
 
 Customizations were implemented in separate files to preserve the integrity of the original compiled code and simplify future updates:
-* [plugin.html](file:///c:/Users/felip/OneDrive/Área de Trabalho/com.tiktok.livestudio.sdPlugin/plugin.html): Entry point loading the compatibility scripts in the header before the main plugin execution.
-* [reconnect-fix.js](file:///c:/Users/felip/OneDrive/Área de Trabalho/com.tiktok.livestudio.sdPlugin/reconnect-fix.js): Handles WebSocket management and auto-reconnection logic.
-* [ajazz-enhancements.js](file:///c:/Users/felip/OneDrive/Área de Trabalho/com.tiktok.livestudio.sdPlugin/ajazz-enhancements.js): Intercepts dial rotation events and handles bleep audio synthesis.
-* [ajazz-pi-enhancements.js](file:///c:/Users/felip/OneDrive/Área de Trabalho/com.tiktok.livestudio.sdPlugin/ajazz-pi-enhancements.js): Extends the Property Inspector to include volume step settings.
+* [plugin.html](plugin.html): Entry point loading the compatibility scripts in the header before the main plugin execution.
+* [reconnect-fix.js](reconnect-fix.js): Handles WebSocket management and auto-reconnection logic.
+* [ajazz-enhancements.js](ajazz-enhancements.js): Intercepts dial rotation events and handles bleep audio synthesis.
+* [ajazz-pi-enhancements.js](ajazz-pi-enhancements.js): Extends the Property Inspector to include volume step settings.
 
 ## Credits and Disclaimer
 
@@ -87,10 +87,10 @@ Os encoders/knobs físicos de volume de microfone e áudio de sistema apresentav
 ## Estrutura dos Arquivos Modificados
 
 As customizações foram desenvolvidas em arquivos separados para preservar a integridade do código original compilado e facilitar futuras atualizações:
-* [plugin.html](file:///c:/Users/felip/OneDrive/Área de Trabalho/com.tiktok.livestudio.sdPlugin/plugin.html): Ponto de entrada que carrega os scripts de compatibilidade no cabeçalho antes do carregamento do plugin.
-* [reconnect-fix.js](file:///c:/Users/felip/OneDrive/Área de Trabalho/com.tiktok.livestudio.sdPlugin/reconnect-fix.js): Implementa a lógica de tratamento e reconexão automática do WebSocket.
-* [ajazz-enhancements.js](file:///c:/Users/felip/OneDrive/Área de Trabalho/com.tiktok.livestudio.sdPlugin/ajazz-enhancements.js): Controla a interceptação dos eventos de rotação dos dials e a síntese de áudio do bleep.
-* [ajazz-pi-enhancements.js](file:///c:/Users/felip/OneDrive/Área de Trabalho/com.tiktok.livestudio.sdPlugin/ajazz-pi-enhancements.js): Estende o Property Inspector para adicionar os campos de configuração de passos de volume.
+* [plugin.html](plugin.html): Ponto de entrada que carrega os scripts de compatibilidade no cabeçalho antes do carregamento do plugin.
+* [reconnect-fix.js](reconnect-fix.js): Implementa a lógica de tratamento e reconexão automática do WebSocket.
+* [ajazz-enhancements.js](ajazz-enhancements.js): Controla a interceptação dos eventos de rotação dos dials e a síntese de áudio do bleep.
+* [ajazz-pi-enhancements.js](ajazz-pi-enhancements.js): Estende o Property Inspector para adicionar os campos de configuração de passos de volume.
 
 ## Créditos e Direitos Autorais
 
