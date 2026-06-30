@@ -48,6 +48,28 @@
     if (!ls || ls.__ajazzReconnectFix) return;
     ls.__ajazzReconnectFix = true;
 
+    var retryTimer = null;
+    function stopRetry() {
+      if (retryTimer) {
+        clearInterval(retryTimer);
+        retryTimer = null;
+      }
+    }
+    function startRetry() {
+      if (retryTimer) return;
+      retryTimer = setInterval(function () {
+        if (ls.lsStatus === CONNECTED) {
+          stopRetry();
+          return;
+        }
+        if (ls.socket && ls.socket.connected) {
+          ls._handleConnect();
+          return;
+        }
+        reopen(ls, 0);
+      }, 2000);
+    }
+
     var originalHandleDisconnect = ls._handleDisconnect;
 
     ls._handleConnect = function () {
@@ -62,6 +84,7 @@
 
       function markConnected() {
         ls.lsStatus = CONNECTED;
+        stopRetry();
         if (!connectedNotified) {
           connectedNotified = true;
           onConnected();
@@ -112,7 +135,10 @@
       try {
         if (originalHandleDisconnect) return originalHandleDisconnect.apply(ls, arguments);
       } finally {
-        if (ls.lsStatus !== CONNECTED) reopen(ls, 750);
+        if (ls.lsStatus !== CONNECTED) {
+          reopen(ls, 750);
+          startRetry();
+        }
       }
     };
 
@@ -120,22 +146,16 @@
       log(ls, 'try connect');
       if (ls.lsStatus !== CONNECTED && ls.socket) {
         reopen(ls, 0);
+        startRetry();
         return;
       }
       ls._init();
       if (ls.socket && ls.socket.connected) {
         ls._handleConnect();
+      } else {
+        startRetry();
       }
     };
-
-    setInterval(function () {
-      if (ls.lsStatus === CONNECTED) return;
-      if (ls.socket && ls.socket.connected) {
-        ls._handleConnect();
-        return;
-      }
-      reopen(ls, 0);
-    }, 2000);
 
     ls.tryConnect();
   }

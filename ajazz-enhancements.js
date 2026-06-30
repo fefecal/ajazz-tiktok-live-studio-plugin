@@ -69,14 +69,13 @@
         oscillator: oscillator,
         gain: gain
       };
-      sendSD(socket, 'showOk', context);
+      // showOk disabled by user request
     } catch (e) {
       sendSD(socket, 'showAlert', context);
     }
   }
 
-  function handleBleepMessage(socket, data) {
-    var message = safeParse(data);
+  function handleBleepMessage(socket, message) {
     if (!message || message.action !== BLEEP_ACTION) return false;
 
     if (message.event === 'keyDown') {
@@ -97,8 +96,7 @@
     return Math.min(100, value);
   }
 
-  function adjustDialRotateEvent(event) {
-    var message = safeParse(event.data);
+  function adjustDialRotateEvent(event, message) {
     if (!message ||
         message.event !== 'dialRotate' ||
         !KNOB_ACTIONS[message.action] ||
@@ -110,11 +108,10 @@
     var stepPercent = getVolumeStepPercent(message);
     if (!ticks || stepPercent === 1) return event;
 
-    var adjusted = JSON.parse(JSON.stringify(message));
-    adjusted.payload.ticks = ticks * stepPercent;
+    message.payload.ticks = ticks * stepPercent;
 
     return {
-      data: JSON.stringify(adjusted),
+      data: JSON.stringify(message),
       origin: event.origin,
       lastEventId: event.lastEventId,
       source: event.source,
@@ -149,13 +146,15 @@
 
         var wrappedListener = typeof listener === 'function'
           ? function (event) {
-              if (handleBleepMessage(socket, event.data)) return;
-              return listener.call(this, adjustDialRotateEvent(event));
+              var message = safeParse(event.data);
+              if (handleBleepMessage(socket, message)) return;
+              return listener.call(this, adjustDialRotateEvent(event, message));
             }
           : {
               handleEvent: function (event) {
-                if (handleBleepMessage(socket, event.data)) return;
-                return listener.handleEvent(adjustDialRotateEvent(event));
+                var message = safeParse(event.data);
+                if (handleBleepMessage(socket, message)) return;
+                return listener.handleEvent(adjustDialRotateEvent(event, message));
               }
             };
 
